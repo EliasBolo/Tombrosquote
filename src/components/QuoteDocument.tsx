@@ -26,7 +26,7 @@ interface QuoteDocumentProps {
   notes: string;
 }
 
-export default function QuoteDocument({ quoteData, greetingText, documentNumber, quoteDate, services, provisions, notes }: QuoteDocumentProps) {
+export default function QuoteDocument({ greetingText, documentNumber, services, provisions, notes }: QuoteDocumentProps) {
   return (
     <div className="bg-white p-4 md:p-8 max-w-4xl mx-auto relative" style={{ fontFamily: 'Arial, sans-serif' }}>
       {/* Background pattern */}
@@ -109,7 +109,7 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
         {/* Closing remarks */}
         <div className="text-center mb-8">
           <p className="text-black mb-6 text-sm">
-            Επίσης, σας ενημερώνω ότι μπορούμε να προβούμε και σε συμφωνία για την παροχή από πλευράς μας επιπρόσθετων υπηρεσιών με το αναγραφόμενο κατωτέρω σ' αυτές κόστος- αμοιβή. Για περαιτέρω πληροφορίες και επιπρόσθετες υπηρεσίες από τις ανωτέρω ενδεικτικά αναφερόμενες, είμαι στη διάθεση σας και αναμένω απάντηση σας.
+            Επίσης, σας ενημερώνω ότι μπορούμε να προβούμε και σε συμφωνία για την παροχή από πλευράς μας επιπρόσθετων υπηρεσιών με το αναγραφόμενο κατωτέρω σ&apos; αυτές κόστος- αμοιβή. Για περαιτέρω πληροφορίες και επιπρόσθετες υπηρεσίες από τις ανωτέρω ενδεικτικά αναφερόμενες, είμαι στη διάθεση σας και αναμένω απάντηση σας.
           </p>
           <div className="text-center">
             <p className="text-black">Με εκτίμηση,</p>

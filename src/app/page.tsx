@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import QuoteDocument from '@/components/QuoteDocument';
-import QuoteForm from '@/components/QuoteForm';
 import EditableList from '@/components/EditableList';
 import LoginForm from '@/components/LoginForm';
 import { exportToCSV, importFromCSV, QuoteState } from '@/utils/csvUtils';
@@ -29,11 +28,11 @@ export default function Home() {
   const [greetingText, setGreetingText] = useState('');
   const [documentNumber, setDocumentNumber] = useState('');
   const [quoteDate, setQuoteDate] = useState('');
-  const [services, setServices] = useState([]);
-  const [provisions, setProvisions] = useState([]);
+  const [services, setServices] = useState<string[]>([]);
+  const [provisions, setProvisions] = useState<string[]>([]);
   const [notes, setNotes] = useState('');
 
-  const handleQuoteChange = (newData: any) => {
+  const handleQuoteChange = (newData: Partial<typeof quoteData>) => {
     setQuoteData(prev => ({ ...prev, ...newData }));
   };
 
@@ -58,9 +57,6 @@ export default function Home() {
   };
 
   const handlePrint = () => {
-    // Generate filename based on document number and date
-    const filename = `DTombros_Quote_${documentNumber || 'Document'}_${quoteDate || 'Date'}.pdf`;
-    
     // Update page title temporarily for PDF export
     const originalTitle = document.title;
     document.title = `DTombros Quote ${documentNumber || 'Document'} - ${quoteDate || 'Date'}`;
@@ -106,7 +102,7 @@ export default function Home() {
         if (importedData.quoteData) setQuoteData(prev => ({ ...prev, ...importedData.quoteData }));
         
         alert('Data imported successfully!');
-      } catch (error) {
+      } catch {
         alert('Error importing CSV file. Please check the file format.');
       }
     }

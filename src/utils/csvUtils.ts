@@ -74,7 +74,7 @@ export const importFromCSV = (file: File): Promise<Partial<QuoteState>> => {
       try {
         const text = e.target?.result as string;
         const lines = text.split('\n');
-        const data: any = {};
+        const data: Record<string, any> = {};
         
         // Parse CSV data
         for (let i = 1; i < lines.length; i++) { // Skip header row
@@ -148,7 +148,7 @@ export const importFromCSV = (file: File): Promise<Partial<QuoteState>> => {
         }
         
         resolve(data);
-      } catch (error) {
+      } catch {
         reject(new Error('Failed to parse CSV file'));
       }
     };
