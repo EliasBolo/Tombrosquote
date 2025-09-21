@@ -66,7 +66,15 @@ export const exportToCSV = (data: QuoteState): void => {
   document.body.removeChild(link);
 };
 
-export const importFromCSV = (file: File): Promise<Partial<QuoteState>> => {
+export const importFromCSV = (file: File): Promise<{
+  documentNumber?: string;
+  quoteDate?: string;
+  greetingText?: string;
+  notes?: string;
+  services?: string[];
+  provisions?: string[];
+  quoteData?: Partial<QuoteData>;
+}> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     
