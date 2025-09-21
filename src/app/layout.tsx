@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tombros Quote Generator",
+  title: "Quote Document",
   description: "Professional photography and cinematography quote generator",
 };
 

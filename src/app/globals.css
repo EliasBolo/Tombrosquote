@@ -27,9 +27,31 @@ body {
 
 /* Print styles */
 @media print {
+  @page {
+    margin: 0.5in;
+    size: A4;
+  }
+  
   body {
     background: white !important;
     color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Hide browser elements */
+  @page {
+    @top-left { content: ""; }
+    @top-right { content: ""; }
+    @bottom-left { content: ""; }
+    @bottom-right { content: ""; }
+  }
+  
+  /* Hide page title and URL */
+  html::before,
+  body::before,
+  body::after {
+    display: none !important;
   }
   
   .print-hidden {
@@ -48,17 +70,43 @@ body {
     border-color: transparent !important;
   }
   
+  /* Reduce padding for print */
   .p-6 {
-    padding: 0 !important;
+    padding: 0.5rem !important;
   }
   
   .py-8 {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
   }
   
   .px-4 {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  
+  /* Optimize quote document for print */
+  .max-w-4xl {
+    max-width: none !important;
+    width: 100% !important;
+  }
+  
+  /* Remove margins from quote document */
+  .mx-auto {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* Ensure proper spacing for print */
+  .mb-8 {
+    margin-bottom: 1rem !important;
+  }
+  
+  .mb-6 {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .mb-4 {
+    margin-bottom: 0.5rem !important;
   }
 }

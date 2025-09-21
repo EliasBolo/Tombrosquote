@@ -41,19 +41,17 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
         {/* Header */}
         <div className="text-center mb-8">
           {/* Logo */}
-          <div className="flex items-center justify-center mb-4">
+          <div className="flex items-center justify-center mb-2">
             <Image
               src="/logo.png"
               alt="Tombros Logo"
               width={64}
               height={64}
-              className="mr-3"
             />
-            <span className="text-2xl font-bold text-black">Tombros</span>
           </div>
           
           {/* Divider */}
-          <div className="border-b border-gray-300 mb-6"></div>
+          <div className="border-b border-gray-300 mb-8"></div>
           
           {/* Document number */}
           <div className="text-right text-sm text-gray-500 mb-4">
