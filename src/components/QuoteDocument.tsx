@@ -81,9 +81,6 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
               </li>
             ))}
           </ul>
-          <p className="text-lg text-black mt-4">
-            Οι παραπάνω προσφορές και υπηρεσίες ανέρχονται στο κόστος των {quoteData.servicesCost}
-          </p>
         </div>
 
         {/* Provisions Section */}
@@ -96,9 +93,6 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
               </li>
             ))}
           </ul>
-          <p className="text-lg text-black mt-4">
-            Οι παραπάνω προσφορές και υπηρεσίες ανέρχονται στο κόστος των {quoteData.provisionsCost}
-          </p>
         </div>
 
         {/* Notes Section */}
@@ -114,7 +108,7 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
         
         {/* Closing remarks */}
         <div className="text-center mb-8">
-          <p className="text-black mb-6">
+          <p className="text-black mb-6 text-sm">
             Επίσης, σας ενημερώνω ότι μπορούμε να προβούμε και σε συμφωνία για την παροχή από πλευράς μας επιπρόσθετων υπηρεσιών με το αναγραφόμενο κατωτέρω σ' αυτές κόστος- αμοιβή. Για περαιτέρω πληροφορίες και επιπρόσθετες υπηρεσίες από τις ανωτέρω ενδεικτικά αναφερόμενες, είμαι στη διάθεση σας και αναμένω απάντηση σας.
           </p>
           <div className="text-center">
@@ -132,7 +126,7 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end text-sm text-black gap-2">
+        <div className="flex justify-between items-end text-sm text-black">
           <div>
             <p>photography / cinematography</p>
             <p className="text-blue-600">K.Palaiologou 70 / Sparta - Greece</p>
