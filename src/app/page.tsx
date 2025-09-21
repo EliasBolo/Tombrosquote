@@ -32,9 +32,6 @@ export default function Home() {
   const [provisions, setProvisions] = useState<string[]>([]);
   const [notes, setNotes] = useState('');
 
-  const handleQuoteChange = (newData: Partial<typeof quoteData>) => {
-    setQuoteData(prev => ({ ...prev, ...newData }));
-  };
 
   // Check authentication on component mount
   useEffect(() => {

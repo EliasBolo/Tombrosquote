@@ -74,7 +74,7 @@ export const importFromCSV = (file: File): Promise<Partial<QuoteState>> => {
       try {
         const text = e.target?.result as string;
         const lines = text.split('\n');
-        const data: Record<string, any> = {};
+        const data: Record<string, string | string[] | QuoteData> = {};
         
         // Parse CSV data
         for (let i = 1; i < lines.length; i++) { // Skip header row
