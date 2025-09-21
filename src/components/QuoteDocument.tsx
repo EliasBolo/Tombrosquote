@@ -28,7 +28,7 @@ interface QuoteDocumentProps {
 
 export default function QuoteDocument({ quoteData, greetingText, documentNumber, quoteDate, services, provisions, notes }: QuoteDocumentProps) {
   return (
-    <div className="bg-white p-8 max-w-4xl mx-auto relative" style={{ fontFamily: 'Arial, sans-serif' }}>
+    <div className="bg-white p-4 md:p-8 max-w-4xl mx-auto relative" style={{ fontFamily: 'Arial, sans-serif' }}>
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="w-full h-full" style={{
@@ -60,7 +60,7 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
           
           {/* Main title */}
           <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold text-black">Οικονομική προσφορά</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-black">Οικονομική προσφορά</h1>
           </div>
         </div>
 
@@ -72,8 +72,8 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
         </div>
 
         {/* Services Section */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-blue-600 mb-4">ΥΠΗΡΕΣΙΕΣ</h2>
+        <div className="mb-6 md:mb-8">
+          <h2 className="text-xl md:text-2xl font-bold text-blue-600 mb-4">ΥΠΗΡΕΣΙΕΣ</h2>
           <ul className="space-y-2 text-black">
             {services.map((service, index) => (
               <li key={index}>
@@ -87,8 +87,8 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
         </div>
 
         {/* Provisions Section */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-blue-600 mb-4">ΠΑΡΟΧΕΣ</h2>
+        <div className="mb-6 md:mb-8">
+          <h2 className="text-xl md:text-2xl font-bold text-blue-600 mb-4">ΠΑΡΟΧΕΣ</h2>
           <ul className="space-y-2 text-black">
             {provisions.map((provision, index) => (
               <li key={index}>
@@ -102,8 +102,8 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
         </div>
 
         {/* Notes Section */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-blue-600 mb-4">ΣΗΜΕΙΩΣΕΙΣ</h2>
+        <div className="mb-6 md:mb-8">
+          <h2 className="text-xl md:text-2xl font-bold text-blue-600 mb-4">ΣΗΜΕΙΩΣΕΙΣ</h2>
           <div className="text-black whitespace-pre-line">
             {notes}
           </div>
@@ -132,7 +132,7 @@ export default function QuoteDocument({ quoteData, greetingText, documentNumber,
         </div>
 
         {/* Footer */}
-        <div className="flex justify-between items-end text-sm text-black">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end text-sm text-black gap-2">
           <div>
             <p>photography / cinematography</p>
             <p className="text-blue-600">K.Palaiologou 70 / Sparta - Greece</p>
