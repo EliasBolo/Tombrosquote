@@ -37,6 +37,17 @@ export default function QuoteDocument({ greetingText, documentNumber, services, 
         }}></div>
       </div>
       
+      {/* Watermark */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
+        <Image
+          src="/image.png"
+          alt="Watermark"
+          width={400}
+          height={400}
+          className="max-w-full max-h-full object-contain"
+        />
+      </div>
+      
       <div className="relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
