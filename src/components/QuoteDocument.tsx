@@ -37,8 +37,19 @@ export default function QuoteDocument({ greetingText, documentNumber, services, 
         }}></div>
       </div>
       
-      {/* Watermark */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
+      {/* Watermark (screen) */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center print-hidden" style={{ opacity: 0.09 }}>
+        <Image
+          src="/image.png"
+          alt="Watermark"
+          width={400}
+          height={400}
+          className="max-w-full max-h-full object-contain"
+        />
+      </div>
+
+      {/* Watermark (print on each page) */}
+      <div className="watermark">
         <Image
           src="/image.png"
           alt="Watermark"
@@ -71,7 +82,7 @@ export default function QuoteDocument({ greetingText, documentNumber, services, 
           
           {/* Main title */}
           <div className="text-center mb-6">
-            <h1 className="text-2xl md:text-3xl font-bold text-black">Οικονομική προσφορά</h1>
+            <h1 className="text-2xl md:text-3xl font-thin text-black">Οικονομική Προσφορά</h1>
           </div>
         </div>
 
@@ -84,7 +95,7 @@ export default function QuoteDocument({ greetingText, documentNumber, services, 
 
         {/* Services Section */}
         <div className="mb-6 md:mb-8">
-          <h2 className="text-xl md:text-2xl font-bold text-blue-600 mb-4">ΥΠΗΡΕΣΙΕΣ</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#7e1b2a] mb-4">ΥΠΗΡΕΣΙΕΣ</h2>
           <ul className="space-y-2 text-black">
             {services.map((service, index) => (
               <li key={index}>
@@ -96,7 +107,7 @@ export default function QuoteDocument({ greetingText, documentNumber, services, 
 
         {/* Provisions Section */}
         <div className="mb-6 md:mb-8">
-          <h2 className="text-xl md:text-2xl font-bold text-blue-600 mb-4">ΠΑΡΟΧΕΣ</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#7e1b2a] mb-4">ΠΑΡΟΧΕΣ</h2>
           <ul className="space-y-2 text-black">
             {provisions.map((provision, index) => (
               <li key={index}>
@@ -108,8 +119,8 @@ export default function QuoteDocument({ greetingText, documentNumber, services, 
 
         {/* Notes Section */}
         <div className="mb-6 md:mb-8">
-          <h2 className="text-xl md:text-2xl font-bold text-blue-600 mb-4">ΣΗΜΕΙΩΣΕΙΣ</h2>
-          <div className="text-black whitespace-pre-line">
+          <h2 className="text-xl md:text-2xl font-bold text-[#7e1b2a] mb-4">ΣΗΜΕΙΩΣΕΙΣ</h2>
+          <div className="text-black whitespace-pre-line text-[12px]">
             {notes}
           </div>
         </div>
@@ -130,7 +141,7 @@ export default function QuoteDocument({ greetingText, documentNumber, services, 
                 alt="Signature"
                 width={128}
                 height={48}
-                className="max-w-full h-auto"
+                className="max-w-full h-auto mix-blend-multiply"
               />
             </div>
           </div>
@@ -140,9 +151,9 @@ export default function QuoteDocument({ greetingText, documentNumber, services, 
         <div className="flex justify-between items-end text-sm text-black">
           <div>
             <p>photography / cinematography</p>
-            <p className="text-blue-600">K.Palaiologou 70 / Sparta - Greece</p>
-            <p className="text-blue-600">ph: +30 27310 29777 / m: 6944 44 2333</p>
-            <p className="text-blue-600">e:info@tombros.gr</p>
+            <p className="text-[#7e1b2a]">K.Palaiologou 70 / Sparta - Greece</p>
+            <p className="text-[#7e1b2a]">ph: +30 27310 29777 / m: 6944 44 2333</p>
+            <p className="text-[#7e1b2a]">e:info@tombros.gr</p>
           </div>
           <div>
             <p>www.tombros.gr</p>

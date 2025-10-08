@@ -217,7 +217,7 @@ export default function Home() {
                 <textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-black text-gray-800"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-black placeholder:text-[10px] text-gray-800 text-[12px]"
                   rows={8}
                   placeholder="Enter notes..."
                 />

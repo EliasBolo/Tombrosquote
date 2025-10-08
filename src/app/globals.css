@@ -25,6 +25,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Default: hide print watermark on screen */
+.watermark {
+  display: none;
+}
+
 /* Print styles */
 @media print {
   @page {
@@ -108,5 +113,20 @@ body {
   
   .mb-4 {
     margin-bottom: 0.5rem !important;
+  }
+
+  /* Centered watermark on every printed page */
+  .watermark {
+    display: flex !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0.09;
+    z-index: 0;
   }
 }
