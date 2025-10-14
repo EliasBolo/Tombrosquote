@@ -82,7 +82,6 @@ export const importFromCSV = (file: File): Promise<{
     reader.onload = (e) => {
       try {
         const text = e.target?.result as string;
-        const lines = text.split('\n');
         const data: {
           documentNumber?: string;
           quoteDate?: string;
@@ -93,50 +92,71 @@ export const importFromCSV = (file: File): Promise<{
           quoteData?: Partial<QuoteData>;
         } = {};
         
-        // Parse CSV data
-        for (let i = 1; i < lines.length; i++) { // Skip header row
-          const line = lines[i].trim();
-          if (!line) continue;
+        // Parse CSV data - handle multi-line fields properly
+        const parseCSVRows = (csvText: string): string[][] => {
+          const rows: string[][] = [];
+          let currentRow: string[] = [];
+          let currentField = '';
+          let inQuotes = false;
+          let i = 0;
           
-          // Improved CSV parsing to handle quoted fields with commas
-          const parseCSVLine = (csvLine: string): [string, string] => {
-            const result: string[] = [];
-            let current = '';
-            let inQuotes = false;
-            let i = 0;
+          while (i < csvText.length) {
+            const char = csvText[i];
+            const nextChar = csvText[i + 1];
             
-            while (i < csvLine.length) {
-              const char = csvLine[i];
-              const nextChar = csvLine[i + 1];
-              
-              if (char === '"') {
-                if (inQuotes && nextChar === '"') {
-                  // Escaped quote
-                  current += '"';
-                  i += 2;
-                } else {
-                  // Toggle quote state
-                  inQuotes = !inQuotes;
-                  i++;
-                }
-              } else if (char === ',' && !inQuotes) {
-                // Field separator
-                result.push(current);
-                current = '';
-                i++;
+            if (char === '"') {
+              if (inQuotes && nextChar === '"') {
+                // Escaped quote
+                currentField += '"';
+                i += 2;
               } else {
-                current += char;
+                // Toggle quote state
+                inQuotes = !inQuotes;
                 i++;
               }
+            } else if (char === ',' && !inQuotes) {
+              // Field separator
+              currentRow.push(currentField);
+              currentField = '';
+              i++;
+            } else if ((char === '\n' || char === '\r') && !inQuotes) {
+              // Row separator (only when not in quotes)
+              if (currentField !== '' || currentRow.length > 0) {
+                currentRow.push(currentField);
+                rows.push(currentRow);
+                currentRow = [];
+                currentField = '';
+              }
+              // Skip \r\n combinations
+              if (char === '\r' && nextChar === '\n') {
+                i += 2;
+              } else {
+                i++;
+              }
+            } else {
+              currentField += char;
+              i++;
             }
-            
-            // Add the last field
-            result.push(current);
-            
-            return [result[0] || '', result.slice(1).join(',') || ''];
-          };
+          }
           
-          const [field, value] = parseCSVLine(line);
+          // Add the last field and row
+          if (currentField !== '' || currentRow.length > 0) {
+            currentRow.push(currentField);
+            rows.push(currentRow);
+          }
+          
+          return rows;
+        };
+        
+        const rows = parseCSVRows(text);
+        
+        // Parse CSV data
+        for (let i = 1; i < rows.length; i++) { // Skip header row
+          const row = rows[i];
+          if (row.length < 2) continue;
+          
+          const field = row[0];
+          const value = row.slice(1).join(',');
           
           if (field && value) {
             const cleanField = field.trim();
