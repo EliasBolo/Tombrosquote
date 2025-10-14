@@ -38,6 +38,7 @@ export const exportToCSV = (data: QuoteState): void => {
     // Provisions
     ...data.provisions.map((provision, index) => [`Provision ${index + 1}`, provision]),
     // Additional quote data
+    ['Date', data.quoteData.date],
     ['Client Name', data.quoteData.clientName],
     ['Wedding Date', data.quoteData.weddingDate],
     ['Location', data.quoteData.location],
@@ -124,6 +125,9 @@ export const importFromCSV = (file: File): Promise<{
                   break;
                 case 'Notes':
                   data.notes = value;
+                  break;
+                case 'Date':
+                  data.quoteData = { ...data.quoteData, date: value };
                   break;
                 case 'Client Name':
                   data.quoteData = { ...data.quoteData, clientName: value };
