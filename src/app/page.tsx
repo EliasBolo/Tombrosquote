@@ -87,20 +87,29 @@ export default function Home() {
     const file = event.target.files?.[0];
     if (file) {
       try {
+        console.log('Starting CSV import for file:', file.name, 'Size:', file.size);
         const importedData = await importFromCSV(file);
+        console.log('Imported data:', importedData);
         
         // Update state with imported data
         if (importedData.documentNumber) setDocumentNumber(importedData.documentNumber);
         if (importedData.quoteDate) setQuoteDate(importedData.quoteDate);
-        if (importedData.greetingText) setGreetingText(importedData.greetingText);
-        if (importedData.notes) setNotes(importedData.notes);
+        if (importedData.greetingText) {
+          console.log('Setting greeting text:', importedData.greetingText);
+          setGreetingText(importedData.greetingText);
+        }
+        if (importedData.notes) {
+          console.log('Setting notes:', importedData.notes);
+          setNotes(importedData.notes);
+        }
         if (importedData.services) setServices(importedData.services);
         if (importedData.provisions) setProvisions(importedData.provisions);
         if (importedData.quoteData) setQuoteData(prev => ({ ...prev, ...importedData.quoteData }));
         
         alert('Data imported successfully!');
-      } catch {
-        alert('Error importing CSV file. Please check the file format.');
+      } catch (error) {
+        console.error('Import error:', error);
+        alert(`Error importing CSV file: ${error instanceof Error ? error.message : 'Unknown error'}`);
       }
     }
   };

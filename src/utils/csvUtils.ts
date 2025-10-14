@@ -225,8 +225,9 @@ export const importFromCSV = (file: File): Promise<{
         }
         
         resolve(data);
-      } catch {
-        reject(new Error('Failed to parse CSV file'));
+      } catch (error) {
+        console.error('CSV parsing error:', error);
+        reject(new Error(`Failed to parse CSV file: ${error instanceof Error ? error.message : 'Unknown error'}`));
       }
     };
     
