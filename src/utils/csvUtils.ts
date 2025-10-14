@@ -98,11 +98,48 @@ export const importFromCSV = (file: File): Promise<{
           const line = lines[i].trim();
           if (!line) continue;
           
-          const [field, ...valueParts] = line.split(',');
-          const value = valueParts.join(',').replace(/^"|"$/g, '').replace(/""/g, '"');
+          // Improved CSV parsing to handle quoted fields with commas
+          const parseCSVLine = (csvLine: string): [string, string] => {
+            const result: string[] = [];
+            let current = '';
+            let inQuotes = false;
+            let i = 0;
+            
+            while (i < csvLine.length) {
+              const char = csvLine[i];
+              const nextChar = csvLine[i + 1];
+              
+              if (char === '"') {
+                if (inQuotes && nextChar === '"') {
+                  // Escaped quote
+                  current += '"';
+                  i += 2;
+                } else {
+                  // Toggle quote state
+                  inQuotes = !inQuotes;
+                  i++;
+                }
+              } else if (char === ',' && !inQuotes) {
+                // Field separator
+                result.push(current);
+                current = '';
+                i++;
+              } else {
+                current += char;
+                i++;
+              }
+            }
+            
+            // Add the last field
+            result.push(current);
+            
+            return [result[0] || '', result.slice(1).join(',') || ''];
+          };
+          
+          const [field, value] = parseCSVLine(line);
           
           if (field && value) {
-            const cleanField = field.replace(/^"|"$/g, '');
+            const cleanField = field.trim();
             
             // Handle services and provisions arrays
             if (cleanField.startsWith('Service ')) {
